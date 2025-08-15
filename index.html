@@ -4,7 +4,454 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Essays — Latest | Mindscape</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fefefe;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: -1px;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: #000;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: normal;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+            font-weight: normal;
+        }
+
+        /* Section Headers */
+        .section-header {
+            margin: 60px 0 40px 0;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #000;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: normal;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Essays Grid */
+        .essays-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .essay-card {
+            border-bottom: 1px solid #e6e6e6;
+            padding-bottom: 30px;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .essay-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .essay-category {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .essay-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            text-decoration: none;
+            display: block;
+        }
+
+        .essay-title:hover {
+            color: #444;
+        }
+
+        .essay-excerpt {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .essay-author {
+            font-size: 14px;
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Featured Essay */
+        .featured-essay {
+            grid-column: 1 / -1;
+            border: none;
+            border-bottom: 2px solid #000;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+
+        .featured-essay .essay-title {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .featured-essay .essay-excerpt {
+            font-size: 18px;
+            max-width: 800px;
+        }
+
+        /* More Essays Link */
+        .more-essays {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .more-essays-link {
+            color: #000;
+            text-decoration: underline;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .more-essays-link:hover {
+            color: #666;
+        }
+
+        /* Hidden essays (initially) */
+        .hidden-essays {
+            display: none;
+        }
+
+        .hidden-essays.show {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        /* Individual Essay Page */
+        .essay-page {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .essay-page.active {
+            display: block;
+        }
+
+        .essay-content-wrapper {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .essay-menu {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .essay-menu h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .essay-menu ul {
+            list-style: none;
+        }
+
+        .essay-menu li {
+            margin-bottom: 10px;
+        }
+
+        .essay-menu a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1.4;
+            display: block;
+            padding: 5px 0;
+            border-left: 2px solid transparent;
+            padding-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .essay-menu a:hover, .essay-menu a.active {
+            color: #000;
+            border-left-color: #000;
+        }
+
+        .essay-content {
+            max-width: 700px;
+        }
+
+        .essay-header {
+            margin-bottom: 40px;
+        }
+
+        .essay-header .essay-category {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .essay-header .essay-title {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .essay-header .essay-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .essay-section {
+            margin-bottom: 40px;
+        }
+
+        .essay-section h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .essay-section p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Suggestions */
+        .suggestions {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #e6e6e6;
+        }
+
+        .suggestions h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #000;
+        }
+
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .suggestion-card {
+            border: 1px solid #e6e6e6;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-card:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: #000;
+        }
+
+        .back-button::before {
+            content: '← ';
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f8f8;
+            border-top: 1px solid #e6e6e6;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .essay-content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .essay-menu {
+                position: static;
+                order: 2;
+                margin-top: 40px;
+                padding-top: 40px;
+                border-top: 1px solid #e6e6e6;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            .page-title {
+                font-size: 36px;
+            }
+
+            .essays-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .featured-essay .essay-title {
+                font-size: 28px;
+            }
+
+            .essay-header .essay-title {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .essay-title {
+                font-size: 20px;
+            }
+
+            .essay-section p {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -408,7 +855,346 @@
         </div>
     </footer>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Sample essay data
+        const essayData = {
+            'featured-essay-1': {
+                category: 'Philosophy of Mind',
+                title: 'The Architecture of Consciousness',
+                author: 'Dr. Sarah Martinez',
+                date: 'March 15, 2025',
+                readTime: '12 min read',
+                domain: 'philosophy',
+                sections: [
+                    {
+                        id: 'introduction',
+                        title: 'Introduction',
+                        content: `Consciousness has long been considered the final frontier of scientific understanding. Despite centuries of philosophical inquiry and decades of neuroscientific research, the nature of conscious experience remains one of the most profound mysteries facing humanity.
+
+                        What if our approach to understanding consciousness has been fundamentally flawed? Rather than viewing consciousness as a single, unified phenomenon, emerging evidence suggests that awareness might be better understood as an intricate architecture of interconnected processes, each contributing to the rich tapestry of subjective experience.
+
+                        This essay explores a new framework for understanding consciousness—one that moves beyond traditional models and embraces the complexity of mental architecture.`
+                    },
+                    {
+                        id: 'traditional-models',
+                        title: 'The Limits of Traditional Models',
+                        content: `Traditional approaches to consciousness have often sought a single explanatory mechanism. Whether through the lens of materialism, dualism, or functionalism, theorists have typically assumed that consciousness could be reduced to a fundamental principle or process.
+
+                        However, these reductionist approaches face significant challenges. The "hard problem of consciousness," as philosopher David Chalmers termed it, highlights the difficulty of explaining why there is something it is like to have experiences. Neural correlates of consciousness, while informative, still leave explanatory gaps between brain activity and subjective experience.
+
+                        Perhaps the issue lies not in our methods, but in our assumptions about the nature of consciousness itself.`
+                    },
+                    {
+                        id: 'architectural-framework',
+                        title: 'An Architectural Framework',
+                        content: `Consider consciousness as architecture rather than substance. Just as a building emerges from the complex interplay of structural elements, consciousness might arise from the dynamic interaction of multiple cognitive and neural subsystems.
+
+                        This architectural view suggests that consciousness is not located in any single brain region or process, but emerges from the coordinated activity of distributed networks. Like a symphony, consciousness requires not just individual instruments (neural processes) but also a conductor (attention), musicians (cognitive modules), and a concert hall (the brain's physical structure).
+
+                        Recent neuroimaging studies support this view, showing that conscious experience correlates with increased connectivity between brain regions rather than activation of specific areas alone.`
+                    },
+                    {
+                        id: 'implications',
+                        title: 'Implications and Future Directions',
+                        content: `This architectural approach to consciousness has profound implications for neuroscience, artificial intelligence, and philosophy of mind. Rather than seeking the "seat" of consciousness, researchers might focus on understanding the principles of cognitive architecture that give rise to conscious experience.
+
+                        For AI development, this suggests that creating conscious machines may require not just sophisticated algorithms, but complex architectures that can support the emergence of unified experience from distributed processes.
+
+                        Philosophically, this framework offers a middle path between reductive materialism and mysterious dualism, suggesting that consciousness is real and irreducible, but also naturally emergent from complex information processing systems.`
+                    },
+                    {
+                        id: 'conclusion',
+                        title: 'Conclusion',
+                        content: `The mystery of consciousness may not yield to simple explanations. Instead, understanding awareness may require us to embrace complexity and think architecturally about the mind.
+
+                        By viewing consciousness as an emergent property of cognitive architecture, we open new avenues for research and reflection. The hard problem of consciousness may remain difficult, but perhaps it becomes more tractable when we stop looking for a single solution and start exploring the rich architectural possibilities of the mind.
+
+                        As we continue to probe the nature of consciousness, we may find that the answer lies not in reducing consciousness to its parts, but in understanding how those parts come together to create something greater than their sum.`
+                    }
+                ]
+            },
+            'philosophy-1': {
+                category: 'Philosophy of Mind',
+                title: 'The Hard Problem of Consciousness',
+                author: 'Prof. David Chalmers',
+                date: 'February 28, 2025',
+                readTime: '15 min read',
+                domain: 'philosophy',
+                sections: [
+                    {
+                        id: 'introduction',
+                        title: 'Introduction',
+                        content: `The hard problem of consciousness stands as perhaps the most significant challenge in contemporary philosophy of mind. While we can explain many aspects of mental life through neuroscience and cognitive psychology, the existence of subjective experience itself remains deeply puzzling.`
+                    },
+                    {
+                        id: 'easy-vs-hard-problems',
+                        title: 'Easy Problems vs. The Hard Problem',
+                        content: `We can distinguish between the "easy problems" of consciousness—such as explaining cognitive functions like attention, memory, and perception—and the "hard problem": why there is something it is like to have experiences at all.`
+                    },
+                    {
+                        id: 'phenomenal-concepts',
+                        title: 'Phenomenal Concepts and Qualia',
+                        content: `The hard problem centers on qualia—the intrinsic, experiential qualities of mental states. Why should physical processes give rise to subjective experience rather than simply executing functions without any inner life?`
+                    },
+                    {
+                        id: 'responses-and-critiques',
+                        title: 'Responses and Critiques',
+                        content: `Various responses to the hard problem have emerged, from eliminative materialism to panpsychism. Each approach offers insights while facing significant challenges.`
+                    },
+                    {
+                        id: 'future-directions',
+                        title: 'Future Directions',
+                        content: `Resolving the hard problem may require new conceptual frameworks that bridge the explanatory gap between physical processes and subjective experience.`
+                    }
+                ]
+            },
+            'science-1': {
+                category: 'Neuroscience',
+                title: 'The Social Brain',
+                author: 'Dr. Robert Kim',
+                date: 'March 8, 2025',
+                readTime: '10 min read',
+                domain: 'science',
+                sections: [
+                    {
+                        id: 'introduction',
+                        title: 'Introduction',
+                        content: `Recent advances in neuroscience reveal that our brains are fundamentally designed for social connection. This social architecture of the brain challenges traditional notions of individual cognition and identity.`
+                    },
+                    {
+                        id: 'neural-networks',
+                        title: 'Social Neural Networks',
+                        content: `Specific brain networks, including the default mode network and theory of mind circuits, are specialized for social cognition and interpersonal understanding.`
+                    },
+                    {
+                        id: 'development-and-plasticity',
+                        title: 'Social Development and Brain Plasticity',
+                        content: `Social experiences literally shape brain development, with profound implications for understanding mental health, education, and human potential.`
+                    },
+                    {
+                        id: 'implications',
+                        title: 'Implications for Society',
+                        content: `Understanding the social brain has important consequences for how we structure society, education, and technology to support human flourishing.`
+                    },
+                    {
+                        id: 'conclusion',
+                        title: 'Conclusion',
+                        content: `The social brain paradigm suggests that connection, not isolation, is the natural state of human cognition, with profound implications for how we understand ourselves.`
+                    }
+                ]
+            },
+            'technology-1': {
+                category: 'Artificial Intelligence',
+                title: 'The Quiet Revolution',
+                author: 'James Wright',
+                date: 'March 1, 2025',
+                readTime: '11 min read',
+                domain: 'technology',
+                sections: [
+                    {
+                        id: 'introduction',
+                        title: 'Introduction',
+                        content: `Artificial intelligence is transforming society in ways both subtle and profound. This quiet revolution is reshaping how we work, think, and understand intelligence itself.`
+                    },
+                    {
+                        id: 'current-landscape',
+                        title: 'The Current AI Landscape',
+                        content: `From language models to computer vision, AI systems are becoming increasingly sophisticated and integrated into daily life.`
+                    },
+                    {
+                        id: 'philosophical-implications',
+                        title: 'Philosophical Implications',
+                        content: `AI development forces us to reconsider fundamental questions about intelligence, consciousness, and what it means to be human.`
+                    },
+                    {
+                        id: 'societal-impact',
+                        title: 'Societal Transformation',
+                        content: `The integration of AI into society raises questions about employment, privacy, autonomy, and the distribution of power.`
+                    },
+                    {
+                        id: 'future-considerations',
+                        title: 'Future Considerations',
+                        content: `As AI becomes more powerful, we must carefully consider how to align these systems with human values and ensure beneficial outcomes.`
+                    }
+                ]
+            }
+        };
+
+        // Suggestions data organized by domain
+        const suggestionsByDomain = {
+            philosophy: [
+                { title: 'Free Will in a Determined Universe', author: 'Dr. Patricia Churchland', category: 'Philosophy of Mind' },
+                { title: 'The Nature of Personal Identity', author: 'Prof. Derek Parfit', category: 'Metaphysics' },
+                { title: 'Moral Responsibility and Neuroscience', author: 'Dr. Michael Gazzaniga', category: 'Ethics' }
+            ],
+            science: [
+                { title: 'Quantum Consciousness Theories', author: 'Dr. Roger Penrose', category: 'Physics' },
+                { title: 'The Connectome Project', author: 'Prof. Sebastian Seung', category: 'Neuroscience' },
+                { title: 'Emergence in Complex Systems', author: 'Dr. Melanie Mitchell', category: 'Complexity Science' }
+            ],
+            technology: [
+                { title: 'Machine Learning and Human Cognition', author: 'Dr. Yoshua Bengio', category: 'AI Research' },
+                { title: 'The Ethics of Autonomous Systems', author: 'Prof. Cynthia Breazeal', category: 'Robotics Ethics' },
+                { title: 'Human-AI Collaboration', author: 'Dr. Fei-Fei Li', category: 'Computer Science' }
+            ],
+            culture: [
+                { title: 'Digital Identity and Authenticity', author: 'Dr. Turkle Sherry', category: 'Digital Culture' },
+                { title: 'The Attention Economy', author: 'Prof. Matthew Crawford', category: 'Media Studies' },
+                { title: 'Virtual Communities and Belonging', author: 'Dr. danah boyd', category: 'Social Media' }
+            ],
+            history: [
+                { title: 'The History of Scientific Thought', author: 'Prof. Thomas Kuhn', category: 'History of Science' },
+                { title: 'Philosophical Movements Through Time', author: 'Dr. Rebecca Newberger Goldstein', category: 'Intellectual History' },
+                { title: 'Technology and Social Change', author: 'Prof. Langdon Winner', category: 'History of Technology' }
+            ]
+        };
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Update active nav item
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
+        }
+
+        function toggleMoreEssays(domain) {
+            const moreSection = document.getElementById(domain + '-more');
+            const link = event.target;
+            
+            if (moreSection.classList.contains('show')) {
+                moreSection.classList.remove('show');
+                link.textContent = 'More essays';
+            } else {
+                moreSection.classList.add('show');
+                link.textContent = 'Show fewer essays';
+            }
+        }
+
+        function showEssay(essayId) {
+            const essayPageData = essayData[essayId];
+            if (!essayPageData) return;
+
+            // Hide home page and show essay page
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('essay-page').classList.add('active');
+
+            // Populate essay header
+            document.getElementById('current-essay-category').textContent = essayPageData.category;
+            document.getElementById('current-essay-title').textContent = essayPageData.title;
+            document.getElementById('current-essay-author').textContent = essayPageData.author;
+            document.getElementById('current-essay-date').textContent = essayPageData.date;
+            document.getElementById('current-essay-read-time').textContent = essayPageData.readTime;
+
+            // Populate table of contents
+            const contentsElement = document.getElementById('essay-contents');
+            contentsElement.innerHTML = '';
+            essayPageData.sections.forEach(section => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + section.id;
+                a.textContent = section.title;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    document.getElementById(section.id).scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                };
+                li.appendChild(a);
+                contentsElement.appendChild(li);
+            });
+
+            // Populate essay sections
+            const sectionsElement = document.getElementById('essay-sections');
+            sectionsElement.innerHTML = '';
+            essayPageData.sections.forEach(section => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'essay-section';
+                sectionDiv.id = section.id;
+                
+                const heading = document.createElement('h2');
+                heading.textContent = section.title;
+                sectionDiv.appendChild(heading);
+                
+                const paragraphs = section.content.split('\n\n');
+                paragraphs.forEach(paragraphText => {
+                    if (paragraphText.trim()) {
+                        const p = document.createElement('p');
+                        p.textContent = paragraphText.trim();
+                        sectionDiv.appendChild(p);
+                    }
+                });
+                
+                sectionsElement.appendChild(sectionDiv);
+            });
+
+            // Populate suggestions based on domain
+            const suggestionsElement = document.getElementById('suggestions-grid');
+            suggestionsElement.innerHTML = '';
+            const domainSuggestions = suggestionsByDomain[essayPageData.domain] || [];
+            
+            domainSuggestions.forEach(suggestion => {
+                const suggestionDiv = document.createElement('div');
+                suggestionDiv.className = 'suggestion-card';
+                suggestionDiv.innerHTML = `
+                    <div class="essay-category">${suggestion.category}</div>
+                    <div class="essay-title" style="font-size: 18px; margin-bottom: 8px;">${suggestion.title}</div>
+                    <div class="essay-author">${suggestion.author}</div>
+                `;
+                suggestionsElement.appendChild(suggestionDiv);
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showHomePage() {
+            document.getElementById('essay-page').classList.remove('active');
+            document.getElementById('home-page').style.display = 'block';
+            
+            // Clear active nav items
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add scroll spy functionality for table of contents
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.essay-section');
+            const menuLinks = document.querySelectorAll('.essay-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.id;
+                }
+            });
+
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            showHomePage();
+        });
+    </script>
 </body>
 </html>
