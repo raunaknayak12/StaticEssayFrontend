@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essays — Latest | Mindscape</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a class="logo" onclick="showHomePage()">Mindscape</a>
+                <nav>
+                    <ul>
+                        <li><a onclick="scrollToSection('philosophy')">Philosophy</a></li>
+                        <li><a onclick="scrollToSection('science')">Science</a></li>
+                        <li><a onclick="scrollToSection('technology')">Technology</a></li>
+                        <li><a onclick="scrollToSection('culture')">Culture</a></li>
+                        <li><a onclick="scrollToSection('history')">History</a></li>
+                        <li><a onclick="showHomePage()">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home-page">
+        <main>
+            <div class="container">
+                <h1 class="page-title">Essays — Latest</h1>
+                <p class="page-subtitle">Longform articles on philosophy, psychology, science, society, history and the arts, written by leading thinkers.</p>
+
+                <!-- Featured Essay -->
+                <div class="essays-grid">
+                    <article class="essay-card featured-essay" onclick="showEssay('featured-essay-1')">
+                        <div class="essay-category">Featured • Philosophy of Mind</div>
+                        <div class="essay-title">The Architecture of Consciousness</div>
+                        <p class="essay-excerpt">What if consciousness isn't a single, unified phenomenon but rather an intricate architecture of interconnected processes? Recent advances in neuroscience and philosophy of mind suggest that our understanding of awareness itself may be fundamentally flawed.</p>
+                        <div class="essay-author">Dr. Sarah Martinez</div>
+                    </article>
+                </div>
+
+                <!-- Philosophy Section -->
+                <section id="philosophy">
+                    <div class="section-header">
+                        <h2 class="section-title">Philosophy</h2>
+                        <p class="section-description">Exploring fundamental questions about existence, knowledge, values, reason, mind, and language.</p>
+                    </div>
+                    <div class="essays-grid">
+                        <article class="essay-card" onclick="showEssay('philosophy-1')">
+                            <div class="essay-category">Philosophy of Mind</div>
+                            <div class="essay-title">The Hard Problem of Consciousness</div>
+                            <p class="essay-excerpt">Why is there something it is like to have experiences? This fundamental question continues to puzzle philosophers and scientists alike.</p>
+                            <div class="essay-author">Prof. David Chalmers</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('philosophy-2')">
+                            <div class="essay-category">Ethics</div>
+                            <div class="essay-title">The Ethics of Enhancement</div>
+                            <p class="essay-excerpt">As biotechnology advances, we face profound questions about human nature and the limits of self-improvement.</p>
+                            <div class="essay-author">Dr. Lisa Thompson</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('philosophy-3')">
+                            <div class="essay-category">Existentialism</div>
+                            <div class="essay-title">Authenticity in the Digital Age</div>
+                            <p class="essay-excerpt">What does it mean to live authentically when our lives are increasingly mediated by digital platforms?</p>
+                            <div class="essay-author">Dr. Marie Dubois</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('philosophy-4')">
+                            <div class="essay-category">Philosophy of Language</div>
+                            <div class="essay-title">The Limits of Translation</div>
+                            <p class="essay-excerpt">Can meaning truly survive the journey from one language to another, or is something always lost in translation?</p>
+                            <div class="essay-author">Prof. Hiroshi Tanaka</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('philosophy-5')">
+                            <div class="essay-category">Political Philosophy</div>
+                            <div class="essay-title">Democracy in Crisis</div>
+                            <p class="essay-excerpt">How can democratic institutions adapt to the challenges of misinformation and political polarization?</p>
+                            <div class="essay-author">Dr. Anna Kowalski</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('philosophy-6')">
+                            <div class="essay-category">Epistemology</div>
+                            <div class="essay-title">The Nature of Truth</div>
+                            <p class="essay-excerpt">In an era of alternative facts and deepfakes, what can we really know about truth and knowledge?</p>
+                            <div class="essay-author">Prof. Thomas Reid</div>
+                        </article>
+                    </div>
+                    <div class="more-essays">
+                        <span class="more-essays-link" onclick="toggleMoreEssays('philosophy')">More essays</span>
+                    </div>
+                    <div id="philosophy-more" class="hidden-essays">
+                        <article class="essay-card" onclick="showEssay('philosophy-7')">
+                            <div class="essay-category">Metaphysics</div>
+                            <div class="essay-title">The Problem of Personal Identity</div>
+                            <p class="essay-excerpt">What makes you 'you' over time? Exploring the philosophical puzzle of personal identity through time.</p>
+                            <div class="essay-author">Dr. Sarah Williams</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('philosophy-8')">
+                            <div class="essay-category">Philosophy of Religion</div>
+                            <div class="essay-title">Faith in an Age of Reason</div>
+                            <p class="essay-excerpt">Can religious belief and scientific rationality coexist in the modern world?</p>
+                            <div class="essay-author">Prof. Michael Augustine</div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Science Section -->
+                <section id="science">
+                    <div class="section-header">
+                        <h2 class="section-title">Science</h2>
+                        <p class="section-description">Latest discoveries and insights from the frontiers of scientific research.</p>
+                    </div>
+                    <div class="essays-grid">
+                        <article class="essay-card" onclick="showEssay('science-1')">
+                            <div class="essay-category">Neuroscience</div>
+                            <div class="essay-title">The Social Brain</div>
+                            <p class="essay-excerpt">New research reveals that our brains are fundamentally wired for connection. What does this mean for individual identity?</p>
+                            <div class="essay-author">Dr. Robert Kim</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('science-2')">
+                            <div class="essay-category">Physics</div>
+                            <div class="essay-title">The Universe as Information</div>
+                            <p class="essay-excerpt">Quantum mechanics suggests that information, not matter or energy, might be the fundamental building block of reality.</p>
+                            <div class="essay-author">Dr. David Park</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('science-3')">
+                            <div class="essay-category">Biology</div>
+                            <div class="essay-title">The Secret Life of Cells</div>
+                            <p class="essay-excerpt">Recent advances in microscopy reveal the stunning complexity of cellular behavior and communication.</p>
+                            <div class="essay-author">Dr. Elena Vasquez</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('science-4')">
+                            <div class="essay-category">Climate Science</div>
+                            <div class="essay-title">Beyond Warming: Complex Climate Feedback</div>
+                            <p class="essay-excerpt">Understanding the intricate web of feedback loops that govern our planet's climate system.</p>
+                            <div class="essay-author">Prof. James Hansen</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('science-5')">
+                            <div class="essay-category">Astronomy</div>
+                            <div class="essay-title">The Search for Life Beyond Earth</div>
+                            <p class="essay-excerpt">New methods for detecting biosignatures are revolutionizing our search for extraterrestrial life.</p>
+                            <div class="essay-author">Dr. Maria Gonzalez</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('science-6')">
+                            <div class="essay-category">Psychology</div>
+                            <div class="essay-title">The Science of Wonder</div>
+                            <p class="essay-excerpt">Why do some experiences fill us with awe while others leave us unmoved? Recent research reveals surprising insights.</p>
+                            <div class="essay-author">Dr. Rachel Green</div>
+                        </article>
+                    </div>
+                    <div class="more-essays">
+                        <span class="more-essays-link" onclick="toggleMoreEssays('science')">More essays</span>
+                    </div>
+                    <div id="science-more" class="hidden-essays">
+                        <article class="essay-card" onclick="showEssay('science-7')">
+                            <div class="essay-category">Genetics</div>
+                            <div class="essay-title">The Gene Editing Revolution</div>
+                            <p class="essay-excerpt">CRISPR and beyond: how gene editing technologies are reshaping medicine and biology.</p>
+                            <div class="essay-author">Dr. Jennifer Chen</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('science-8')">
+                            <div class="essay-category">Cognitive Science</div>
+                            <div class="essay-title">The Memory Palace of Tomorrow</div>
+                            <p class="essay-excerpt">Ancient techniques for memory enhancement are finding new relevance in our digital age.</p>
+                            <div class="essay-author">Michael Chen</div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Technology Section -->
+                <section id="technology">
+                    <div class="section-header">
+                        <h2 class="section-title">Technology</h2>
+                        <p class="section-description">Examining the impact of technological advancement on society and human experience.</p>
+                    </div>
+                    <div class="essays-grid">
+                        <article class="essay-card" onclick="showEssay('technology-1')">
+                            <div class="essay-category">Artificial Intelligence</div>
+                            <div class="essay-title">The Quiet Revolution</div>
+                            <p class="essay-excerpt">Artificial intelligence is transforming not just how we work, but how we think about intelligence itself.</p>
+                            <div class="essay-author">James Wright</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('technology-2')">
+                            <div class="essay-category">Digital Society</div>
+                            <div class="essay-title">The Attention Economy</div>
+                            <p class="essay-excerpt">How social media platforms compete for our most precious resource: human attention.</p>
+                            <div class="essay-author">Dr. Shoshana Zuboff</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('technology-3')">
+                            <div class="essay-category">Biotechnology</div>
+                            <div class="essay-title">Designing Life</div>
+                            <p class="essay-excerpt">Synthetic biology promises to revolutionize everything from medicine to manufacturing.</p>
+                            <div class="essay-author">Prof. Craig Venter</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('technology-4')">
+                            <div class="essay-category">Quantum Computing</div>
+                            <div class="essay-title">Computing at the Quantum Scale</div>
+                            <p class="essay-excerpt">How quantum computers will transform cryptography, drug discovery, and our understanding of computation.</p>
+                            <div class="essay-author">Dr. John Preskill</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('technology-5')">
+                            <div class="essay-category">Robotics</div>
+                            <div class="essay-title">Machines Among Us</div>
+                            <p class="essay-excerpt">As robots become more sophisticated, what does it mean for human work and relationships?</p>
+                            <div class="essay-author">Prof. Rodney Brooks</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('technology-6')">
+                            <div class="essay-category">Virtual Reality</div>
+                            <div class="essay-title">The Metaverse Question</div>
+                            <p class="essay-excerpt">Will virtual worlds become as meaningful as physical reality, or are we chasing a digital mirage?</p>
+                            <div class="essay-author">Dr. Helen Papagiannis</div>
+                        </article>
+                    </div>
+                    <div class="more-essays">
+                        <span class="more-essays-link" onclick="toggleMoreEssays('technology')">More essays</span>
+                    </div>
+                    <div id="technology-more" class="hidden-essays">
+                        <article class="essay-card" onclick="showEssay('technology-7')">
+                            <div class="essay-category">Cybersecurity</div>
+                            <div class="essay-title">The New Warfare</div>
+                            <p class="essay-excerpt">How cyber attacks are reshaping international conflict and domestic security.</p>
+                            <div class="essay-author">Dr. Bruce Schneier</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('technology-8')">
+                            <div class="essay-category">Space Technology</div>
+                            <div class="essay-title">The New Space Race</div>
+                            <p class="essay-excerpt">Private companies are democratizing space access, but what are the implications?</p>
+                            <div class="essay-author">Dr. Mary Roach</div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Culture Section -->
+                <section id="culture">
+                    <div class="section-header">
+                        <h2 class="section-title">Culture</h2>
+                        <p class="section-description">Understanding human culture, creativity, and social phenomena in our interconnected world.</p>
+                    </div>
+                    <div class="essays-grid">
+                        <article class="essay-card" onclick="showEssay('culture-1')">
+                            <div class="essay-category">Cultural Studies</div>
+                            <div class="essay-title">Digital Nomadism and Identity</div>
+                            <p class="essay-excerpt">What happens to our sense of place and belonging when location becomes increasingly fluid?</p>
+                            <div class="essay-author">Maria Santos</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('culture-2')">
+                            <div class="essay-category">Art & Aesthetics</div>
+                            <div class="essay-title">The New Sublime</div>
+                            <p class="essay-excerpt">How do we experience beauty and transcendence in an age of artificial intelligence and virtual reality?</p>
+                            <div class="essay-author">Isabella Clarke</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('culture-3')">
+                            <div class="essay-category">Media Studies</div>
+                            <div class="essay-title">The Death of Expertise</div>
+                            <p class="essay-excerpt">In the age of Google and social media, what role do experts play in public discourse?</p>
+                            <div class="essay-author">Prof. Tom Nichols</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('culture-4')">
+                            <div class="essay-category">Sociology</div>
+                            <div class="essay-title">The Loneliness Epidemic</div>
+                            <p class="essay-excerpt">Despite being more connected than ever, why are so many people feeling isolated and alone?</p>
+                            <div class="essay-author">Dr. Vivek Murthy</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('culture-5')">
+                            <div class="essay-category">Literature</div>
+                            <div class="essay-title">Stories in the Digital Age</div>
+                            <p class="essay-excerpt">How are new technologies changing the way we tell and consume stories?</p>
+                            <div class="essay-author">Prof. N.K. Jemisin</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('culture-6')">
+                            <div class="essay-category">Music</div>
+                            <div class="essay-title">The Algorithm's Playlist</div>
+                            <p class="essay-excerpt">How recommendation algorithms are shaping musical taste and discovery.</p>
+                            <div class="essay-author">Dr. Sophie Scott</div>
+                        </article>
+                    </div>
+                    <div class="more-essays">
+                        <span class="more-essays-link" onclick="toggleMoreEssays('culture')">More essays</span>
+                    </div>
+                    <div id="culture-more" class="hidden-essays">
+                        <article class="essay-card" onclick="showEssay('culture-7')">
+                            <div class="essay-category">Fashion</div>
+                            <div class="essay-title">Sustainable Style</div>
+                            <p class="essay-excerpt">Can fashion be both beautiful and environmentally responsible?</p>
+                            <div class="essay-author">Stella McCartney</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('culture-8')">
+                            <div class="essay-category">Food Culture</div>
+                            <div class="essay-title">The Future of Food</div>
+                            <p class="essay-excerpt">Lab-grown meat and vertical farms are revolutionizing how we think about food production.</p>
+                            <div class="essay-author">Dr. Mark Post</div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- History Section -->
+                <section id="history">
+                    <div class="section-header">
+                        <h2 class="section-title">History</h2>
+                        <p class="section-description">Lessons from the past that illuminate our present and guide our future.</p>
+                    </div>
+                    <div class="essays-grid">
+                        <article class="essay-card" onclick="showEssay('history-1')">
+                            <div class="essay-category">History of Ideas</div>
+                            <div class="essay-title">The Lost Art of Solitude</div>
+                            <p class="essay-excerpt">In our hyperconnected world, the ability to be alone with our thoughts has become both more precious and elusive.</p>
+                            <div class="essay-author">Prof. Anne Williams</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('history-2')">
+                            <div class="essay-category">Economic History</div>
+                            <div class="essay-title">The Rise and Fall of Empires</div>
+                            <p class="essay-excerpt">What can history teach us about the cycles of economic growth and decline?</p>
+                            <div class="essay-author">Prof. Niall Ferguson</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('history-3')">
+                            <div class="essay-category">Social History</div>
+                            <div class="essay-title">The Great Migration</div>
+                            <p class="essay-excerpt">How mass movements of people have shaped civilizations throughout history.</p>
+                            <div class="essay-author">Dr. Isabel Wilkerson</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('history-4')">
+                            <div class="essay-category">History of Science</div>
+                            <div class="essay-title">The Scientific Revolution Revisited</div>
+                            <p class="essay-excerpt">New perspectives on how the modern scientific worldview emerged in early modern Europe.</p>
+                            <div class="essay-author">Prof. Steven Shapin</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('history-5')">
+                            <div class="essay-category">Environmental History</div>
+                            <div class="essay-title">Climate and Civilization</div>
+                            <p class="essay-excerpt">How climate change has influenced the rise and fall of civilizations throughout history.</p>
+                            <div class="essay-author">Dr. Brian Fagan</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('history-6')">
+                            <div class="essay-category">Cultural History</div>
+                            <div class="essay-title">The History of Privacy</div>
+                            <p class="essay-excerpt">How our concept of privacy has evolved from ancient times to the digital age.</p>
+                            <div class="essay-author">Prof. Sarah Igo</div>
+                        </article>
+                    </div>
+                    <div class="more-essays">
+                        <span class="more-essays-link" onclick="toggleMoreEssays('history')">More essays</span>
+                    </div>
+                    <div id="history-more" class="hidden-essays">
+                        <article class="essay-card" onclick="showEssay('history-7')">
+                            <div class="essay-category">Military History</div>
+                            <div class="essay-title">The Art of War in the Digital Age</div>
+                            <p class="essay-excerpt">How ancient military strategies apply to modern cyber warfare and information conflicts.</p>
+                            <div class="essay-author">Gen. Stanley McChrystal</div>
+                        </article>
+                        <article class="essay-card" onclick="showEssay('history-8')">
+                            <div class="essay-category">Intellectual History</div>
+                            <div class="essay-title">The Enlightenment's Shadow</div>
+                            <p class="essay-excerpt">Examining the contradictions and unintended consequences of Enlightenment ideals.</p>
+                            <div class="essay-author">Prof. Jonathan Israel</div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Individual Essay Page -->
+    <div id="essay-page" class="essay-page">
+        <div class="container">
+            <a class="back-button" onclick="showHomePage()">Back to Essays</a>
+            
+            <div class="essay-content-wrapper">
+                <div class="essay-menu">
+                    <h3>Contents</h3>
+                    <ul id="essay-contents">
+                        <!-- Contents will be populated by JavaScript -->
+                    </ul>
+                </div>
+                
+                <div class="essay-content">
+                    <div class="essay-header">
+                        <div class="essay-category" id="current-essay-category">Philosophy of Mind</div>
+                        <h1 class="essay-title" id="current-essay-title">The Architecture of Consciousness</h1>
+                        <div class="essay-meta">
+                            <span id="current-essay-author">Dr. Sarah Martinez</span> • 
+                            <span id="current-essay-date">March 15, 2025</span> • 
+                            <span id="current-essay-read-time">12 min read</span>
+                        </div>
+                    </div>
+                    
+                    <div id="essay-sections">
+                        <!-- Essay content will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="suggestions">
+                        <h3>Related Essays</h3>
+                        <div class="suggestions-grid" id="suggestions-grid">
+                            <!-- Suggestions will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Mindscape. A magazine of ideas and culture.</p>
+                <p>Exploring knowledge that helps us understand ourselves and the world.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
